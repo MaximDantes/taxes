@@ -9,7 +9,6 @@ import payersRouter from './routes/payers-router'
 import taxesRouter from './routes/taxes-route'
 import taxRatesRouter from './routes/tax-rates-route'
 import declarationsRouter from './routes/declarations-router'
-import declarationTaxRatesController from './controllers/declaration-tax-rates-controller'
 import declarationTaxRatesRouter from './routes/declaration-tax-rates-router'
 
 const PORT = 4000

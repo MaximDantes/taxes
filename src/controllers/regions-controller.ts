@@ -13,29 +13,19 @@ const regionsController = {
         }
     },
 
-    getAll: async (req: Request, res: Response<Region[]>) => {
+    getAll: async (req: Request, res: Response) => {
         try {
             const data = await RegionModel.find()
 
-            const parsedData: Region[] = []
-
-            data.map(item => {
-                parsedData.push({
-                    name: item.name
-                })
-            })
-
-            res.status(200).json(parsedData)
+            res.status(200).json(data)
         } catch (e) {
             console.log(e)
-            // res.status(500).send('error')
+            res.status(500).send({error: 'e'})
         }
     },
 
     add: async (req: Request, res: Response) => {
         try {
-            console.log(req.body)
-
             const data = new RegionModel({
                 name: req.body.name
             })
@@ -44,7 +34,7 @@ const regionsController = {
             res.status(200).json(data)
         } catch (e) {
             console.log(e)
-            res.status(500).send('error')
+            res.status(500).send({error: 'e'})
         }
     }
 }
