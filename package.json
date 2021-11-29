@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon --config nodemon.json src/index.ts",
-    "build": "tsc -p ."
+    "start": "node .",
+    "dev": "nodemon --config nodemon.json src/index.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

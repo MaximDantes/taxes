@@ -1,24 +1,28 @@
 import {Request, Response} from 'express'
-import KindOfActivityModel, {KindOfActivity} from '../models/KindOfActivity'
+import KindOfActivityModel from '../models/KindOfActivity'
 
 const kindsOfActivityController = {
     getAll: async (req: Request, res: Response) => {
         try {
             const data = await KindOfActivityModel.find()
 
-            const parsedData: KindOfActivity[] = []
+            res.status(200).send(data)
+        } catch (e) {
+            res.status(500).send({error: 'e'})
+        }
+    },
 
-            data.map(item => {
-                parsedData.push({
-                    name: item.name,
-                    useInSimpleTax: item.useInSimpleTax
-                })
+    getByPayerId: async (req: Request, res: Response) => {
+        try {
+            console.log(req.params.kindOfActivityId)
+
+            const data = await KindOfActivityModel.find({
+                _id: req.params.kindOfActivityId
             })
 
-            res.status(200).send(parsedData)
+            res.status(200).send(data)
         } catch (e) {
-            console.error(e)
-            res.status(500).send('error')
+            res.status(500).send({error: 'e'})
         }
     },
 

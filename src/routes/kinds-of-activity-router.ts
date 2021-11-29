@@ -4,6 +4,7 @@ import kindsOfActivityController from '../controllers/kinds-of-activity-controll
 const kindsOfActivityRouter = express.Router()
 
 kindsOfActivityRouter.get('/', kindsOfActivityController.getAll)
+kindsOfActivityRouter.get('/:kindOfActivityId', kindsOfActivityController.getByPayerId)
 kindsOfActivityRouter.post('/', kindsOfActivityController.add)
 
 export default kindsOfActivityRouter

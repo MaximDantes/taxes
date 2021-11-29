@@ -1,4 +1,4 @@
-export interface Response<T> {
-    data: T
+export interface HttpResponse<T> {
+    data?: T
     error?: string
 }
