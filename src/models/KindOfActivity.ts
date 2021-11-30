@@ -1,9 +1,8 @@
-import {Document, Model, model, Query, Schema} from 'mongoose'
+import {model, Schema} from 'mongoose'
 import {collections} from './collections'
-import {Region} from './Region'
 
 export interface KindOfActivity {
-    name: string
+    title: string
     useInSimpleTax: boolean
 }
 
@@ -13,7 +12,7 @@ export interface KindOfActivity {
 // }
 
 const schema = new Schema<KindOfActivity>({
-    name: { type: String, required: true },
+    title: { type: String, required: true },
     useInSimpleTax: { type: Boolean, required: true }
 })
 

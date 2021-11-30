@@ -12,7 +12,6 @@ const schema = new Schema<Declaration>({
     payerId: {type: Schema.Types.ObjectId, ref: collections.payer, required: true},
     term: {type: Date, required: true},
     sum: {type: Number, required: true},
-    date: {type: Date, required: true}
 })
 
 const DeclarationModel = model<Declaration>(collections.declaration, schema)

@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
 import KindOfActivityModel from '../models/KindOfActivity'
+import KindOfActivity from '../models/KindOfActivity'
 
 const kindsOfActivityController = {
     getAll: async (req: Request, res: Response) => {
@@ -14,8 +15,6 @@ const kindsOfActivityController = {
 
     getByPayerId: async (req: Request, res: Response) => {
         try {
-            console.log(req.params.kindOfActivityId)
-
             const data = await KindOfActivityModel.find({
                 _id: req.params.kindOfActivityId
             })
@@ -26,18 +25,39 @@ const kindsOfActivityController = {
         }
     },
 
-    add: async (req: Request, res: Response) => {
+    edit: async (req: Request, res: Response) => {
         try {
-            const data = new KindOfActivityModel({
-                name: req.body.name,
-                useInSimpleTax: req.body.useInSimpleTax
-            })
-            await data.save()
+            await KindOfActivity.updateOne({_id: req.body.id}, req.body)
 
-            res.send(data)
+            const data = await KindOfActivityModel.findOne({_id: req.body.id})
+
+            res.status(200).send(data)
         } catch (e) {
             console.error(e)
             res.status(500).send('error')
+        }
+    },
+
+    add: async (req: Request, res: Response) => {
+        try {
+            const data = new KindOfActivityModel(req.body)
+            await data.save()
+
+            res.status(200).send(data)
+        } catch (e) {
+            console.error(e)
+            res.status(500).send('error')
+        }
+    },
+
+    delete: async (req: Request, res: Response) => {
+        try {
+            await KindOfActivity.deleteOne({_id: req.params.id})
+
+            res.status(200).send(req.params.id)
+        } catch (e) {
+            console.error(e)
+            res.status(500).send({error: 'e'})
         }
     }
 }

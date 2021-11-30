@@ -2,7 +2,7 @@ import { Document, Model, Query, Schema, model } from 'mongoose';
 import {collections} from './collections'
 
 export interface Region {
-    name: string
+    title: string
 }
 
 interface RegionQueryHelpers {
@@ -10,7 +10,7 @@ interface RegionQueryHelpers {
 }
 
 const schema = new Schema<Region>({
-    name: { type: String, required: true }
+    title: { type: String, required: true }
 })
 
 schema.query.byName = function(name): Query<any, Document<Region>> & RegionQueryHelpers {
